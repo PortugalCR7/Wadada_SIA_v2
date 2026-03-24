@@ -1,9 +1,9 @@
-import { createSupabaseServerClient } from "@/lib/supabase-server"
+import { createSupabasePublicClient } from "@/lib/supabase-server"
 import type { NextStep } from "./types"
 
 export async function getNextSteps(): Promise<NextStep[]> {
   try {
-    const supabase = await createSupabaseServerClient()
+    const supabase = createSupabasePublicClient()
     const { data, error } = await supabase
       .from("si_next_steps")
       .select("*")

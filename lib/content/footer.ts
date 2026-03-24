@@ -1,9 +1,9 @@
-import { createSupabaseServerClient } from "@/lib/supabase-server"
+import { createSupabasePublicClient } from "@/lib/supabase-server"
 import type { FooterClosing } from "./types"
 
 export async function getFooterClosing(): Promise<FooterClosing | null> {
   try {
-    const supabase = await createSupabaseServerClient()
+    const supabase = createSupabasePublicClient()
     const { data, error } = await supabase
       .from("si_footer_closing")
       .select("*")

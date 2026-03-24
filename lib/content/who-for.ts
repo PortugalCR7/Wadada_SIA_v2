@@ -1,9 +1,9 @@
-import { createSupabaseServerClient } from "@/lib/supabase-server"
+import { createSupabasePublicClient } from "@/lib/supabase-server"
 import type { WhoForItem } from "./types"
 
 export async function getWhoForItems(): Promise<WhoForItem[]> {
   try {
-    const supabase = await createSupabaseServerClient()
+    const supabase = createSupabasePublicClient()
     const { data, error } = await supabase
       .from("si_who_for_items")
       .select("*")

@@ -1,9 +1,9 @@
-import { createSupabaseServerClient } from "@/lib/supabase-server"
+import { createSupabasePublicClient } from "@/lib/supabase-server"
 import type { Investment } from "./types"
 
 export async function getInvestment(): Promise<Investment | null> {
   try {
-    const supabase = await createSupabaseServerClient()
+    const supabase = createSupabasePublicClient()
     const { data, error } = await supabase
       .from("si_investment")
       .select("*")

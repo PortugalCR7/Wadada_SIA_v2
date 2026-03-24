@@ -1,9 +1,9 @@
-import { createSupabaseServerClient } from "@/lib/supabase-server"
+import { createSupabasePublicClient } from "@/lib/supabase-server"
 import type { Requirements, RequirementItem } from "./types"
 
 export async function getRequirements(): Promise<Requirements | null> {
   try {
-    const supabase = await createSupabaseServerClient()
+    const supabase = createSupabasePublicClient()
     const { data, error } = await supabase
       .from("si_requirements")
       .select("*")
@@ -19,7 +19,7 @@ export async function getRequirements(): Promise<Requirements | null> {
 
 export async function getRequirementItems(): Promise<RequirementItem[]> {
   try {
-    const supabase = await createSupabaseServerClient()
+    const supabase = createSupabasePublicClient()
     const { data, error } = await supabase
       .from("si_requirement_items")
       .select("*")

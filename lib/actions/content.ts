@@ -18,7 +18,7 @@ export async function upsertSingleton(
     ;({ error } = await supabase.from(table).insert(fields))
   }
   if (error) throw new Error(`upsertSingleton(${table}): ${error.message}`)
-  revalidatePath("/soul-initiation")
+  revalidatePath("/")
 }
 
 // ─── Replace list (delete all, re-insert ordered) ────────────────────────────
@@ -34,7 +34,7 @@ export async function replaceList(
     const { error: insError } = await supabase.from(table).insert(rows)
     if (insError) throw new Error(`replaceList insert(${table}): ${insError.message}`)
   }
-  revalidatePath("/soul-initiation")
+  revalidatePath("/")
 }
 
 // ─── Upload image to Supabase Storage ────────────────────────────────────────

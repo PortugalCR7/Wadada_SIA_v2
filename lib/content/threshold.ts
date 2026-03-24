@@ -1,9 +1,9 @@
-import { createSupabaseServerClient } from "@/lib/supabase-server"
+import { createSupabasePublicClient } from "@/lib/supabase-server"
 import type { ThresholdDefinition, ThresholdItem } from "./types"
 
 export async function getThresholdDefinition(): Promise<ThresholdDefinition | null> {
   try {
-    const supabase = await createSupabaseServerClient()
+    const supabase = createSupabasePublicClient()
     const { data, error } = await supabase
       .from("si_threshold_definition")
       .select("*")
@@ -19,7 +19,7 @@ export async function getThresholdDefinition(): Promise<ThresholdDefinition | nu
 
 export async function getThresholdItems(): Promise<ThresholdItem[]> {
   try {
-    const supabase = await createSupabaseServerClient()
+    const supabase = createSupabasePublicClient()
     const { data, error } = await supabase
       .from("si_threshold_items")
       .select("*")

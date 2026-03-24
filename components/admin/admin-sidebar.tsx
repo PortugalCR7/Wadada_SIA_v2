@@ -76,7 +76,7 @@ export function AdminSidebar() {
       {/* Bottom actions */}
       <div className="border-t border-zinc-800/60 px-5 py-5 space-y-1">
         <a
-          href="/soul-initiation"
+          href="/"
           target="_blank"
           rel="noopener noreferrer"
           className="flex items-center gap-2 text-[10px] tracking-[0.25em] uppercase text-zinc-600 hover:text-zinc-300 transition-colors py-2"
