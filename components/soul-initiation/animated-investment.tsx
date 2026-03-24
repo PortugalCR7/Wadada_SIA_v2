@@ -35,7 +35,7 @@ export function AnimatedInvestment({
             &ldquo;{investment.blockquote_text}&rdquo;
           </blockquote>
         </div>
-        <a href={investment.cta_url}>
+        <a href={investment.cta_url} target="_blank" rel="noopener noreferrer">
           <LiquidButton size="xxl" className="w-full relative z-10 h-24 text-2xl">
             {investment.cta_label}
           </LiquidButton>

@@ -134,7 +134,7 @@ export function AnimatedGuides({
 
                 {guides[active].cta_label && guides[active].cta_url && (
                   <a
-                    href={guides[active].cta_url}
+                    href={guides[active].cta_url} target="_blank" rel="noopener noreferrer"
                     className="inline-block text-sm uppercase tracking-widest font-black border-b border-black pb-1 hover:text-zinc-500 transition-colors mt-2"
                   >
                     {guides[active].cta_label} →

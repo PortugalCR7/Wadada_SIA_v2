@@ -184,7 +184,7 @@ export function GuidesFormClient({ guides, action }: GuidesFormClientProps) {
           type="button"
           onClick={addGuide}
           disabled={isPending}
-          className="w-full border border-dashed border-zinc-700 text-zinc-500 hover:border-white hover:text-white transition-colors py-4 text-xs uppercase tracking-widest font-black disabled:opacity-50"
+          className="w-full bg-zinc-800 border border-zinc-700 text-white hover:bg-zinc-700 transition-colors py-4 text-xs uppercase tracking-widest font-black disabled:opacity-50"
         >
           + Add Guide Card
         </button>
