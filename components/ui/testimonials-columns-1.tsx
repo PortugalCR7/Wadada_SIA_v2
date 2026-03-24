@@ -51,61 +51,37 @@ export const TestimonialsColumn = (props: {
   )
 }
 
-// Running club testimonials data
+// Fallback testimonials — replaced by CMS data when available
 const testimonials = [
   {
-    text: "Wadada changed my life. From struggling to run 5 minutes to completing my first marathon, this community believed in me when I didn't believe in myself.",
+    text: "Something shifted in me that I still can't fully put into words. The structure held me through the hardest part of the crossing.",
     image: "/placeholder.svg?height=48&width=48",
-    name: "Sarah Chen",
-    role: "Marathon Finisher",
+    name: "S.C.",
+    role: "Program Participant",
   },
   {
-    text: "I was intimidated to join a running group, but Wadada welcomed me with open arms. Now I have lifelong friends and the confidence to chase any goal.",
+    text: "I came in with questions and left with a different relationship to myself. That's the only way I know how to describe it.",
     image: "/placeholder.svg?height=48&width=48",
-    name: "Marcus Johnson",
-    role: "Trail Runner",
+    name: "M.J.",
+    role: "Soul Initiation Alumni",
   },
   {
-    text: "The energy at Wadada runs is infectious. Whether you're fast or slow, everyone cheers you on. It's not about competition—it's about community.",
+    text: "This container gave me permission to become what I'd been circling for years. The guides held space with rare precision.",
     image: "/placeholder.svg?height=48&width=48",
-    name: "Priya Patel",
-    role: "5K Enthusiast",
+    name: "P.P.",
+    role: "Program Participant",
   },
   {
-    text: "After years of running alone, finding Wadada was a game-changer. The group runs pushed me to new personal bests I never thought possible.",
+    text: "I've done the therapy, read the books, attended the retreats. Nothing prepared me for what became possible inside this structure.",
     image: "/placeholder.svg?height=48&width=48",
-    name: "David Rodriguez",
-    role: "Speed Demon",
+    name: "D.R.",
+    role: "Soul Initiation Alumni",
   },
   {
-    text: "Wadada taught me that running isn't just exercise—it's therapy, friendship, and adventure all rolled into one. This club saved my mental health.",
+    text: "The arc is real. I didn't believe it at first — but there's a before and an after now. Six months changed the direction of my life.",
     image: "/placeholder.svg?height=48&width=48",
-    name: "Emma Thompson",
-    role: "Mindful Runner",
-  },
-  {
-    text: "From couch to 10K in 6 months with Wadada's support. They meet you where you are and help you discover where you can go. Pure magic.",
-    image: "/placeholder.svg?height=48&width=48",
-    name: "James Wilson",
-    role: "Beginner Success",
-  },
-  {
-    text: "The sunrise runs with Wadada are spiritual experiences. There's something powerful about moving together as the world wakes up around us.",
-    image: "/placeholder.svg?height=48&width=48",
-    name: "Aisha Mohammed",
-    role: "Dawn Patrol",
-  },
-  {
-    text: "I joined Wadada after moving to a new city. Not only did I find my running tribe, but I found my chosen family. Movement truly is lifestyle here.",
-    image: "/placeholder.svg?height=48&width=48",
-    name: "Alex Kim",
-    role: "Community Builder",
-  },
-  {
-    text: "Wadada celebrates every victory, no matter how small. My first mile felt like winning the Olympics with this crew cheering me on.",
-    image: "/placeholder.svg?height=48&width=48",
-    name: "Lisa Garcia",
-    role: "First Mile Hero",
+    name: "E.T.",
+    role: "Program Participant",
   },
 ]
 

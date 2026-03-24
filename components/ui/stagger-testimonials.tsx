@@ -7,147 +7,42 @@ import { cn } from "@/lib/utils"
 
 const SQRT_5000 = Math.sqrt(5000)
 
-// Running club testimonials data with randomly generated icons
+// Fallback testimonials — replaced by CMS data when available
 const testimonials = [
   {
     tempId: 0,
     testimonial:
-      "Wadada changed my life. From struggling to run 5 minutes to completing my first marathon, this community believed in me when I didn't believe in myself.",
-    by: "Sarah Chen, Marathon Finisher",
-    imgSrc: "https://api.dicebear.com/7.x/initials/svg?seed=SarahChen&backgroundColor=3b82f6&textColor=ffffff",
+      "Something shifted in me that I still can't fully put into words. The structure held me through the hardest part of the crossing.",
+    by: "S.C., Program Participant",
+    imgSrc: "https://api.dicebear.com/7.x/initials/svg?seed=SC&backgroundColor=000000&textColor=ffffff",
   },
   {
     tempId: 1,
     testimonial:
-      "I was intimidated to join a running group, but Wadada welcomed me with open arms. Now I have lifelong friends and the confidence to chase any goal.",
-    by: "Marcus Johnson, Trail Runner",
-    imgSrc: "https://api.dicebear.com/7.x/initials/svg?seed=MarcusJohnson&backgroundColor=10b981&textColor=ffffff",
+      "I came in with questions and left with a different relationship to myself. That's the only way I know how to describe it.",
+    by: "M.J., Soul Initiation Alumni",
+    imgSrc: "https://api.dicebear.com/7.x/initials/svg?seed=MJ&backgroundColor=111111&textColor=ffffff",
   },
   {
     tempId: 2,
     testimonial:
-      "The energy at Wadada runs is infectious. Whether you're fast or slow, everyone cheers you on. It's not about competition—it's about community.",
-    by: "Priya Patel, 5K Enthusiast",
-    imgSrc: "https://api.dicebear.com/7.x/initials/svg?seed=PriyaPatel&backgroundColor=8b5cf6&textColor=ffffff",
+      "This container gave me permission to become what I'd been circling for years. The guides held space with rare precision.",
+    by: "P.P., Program Participant",
+    imgSrc: "https://api.dicebear.com/7.x/initials/svg?seed=PP&backgroundColor=222222&textColor=ffffff",
   },
   {
     tempId: 3,
     testimonial:
-      "After years of running alone, finding Wadada was a game-changer. The group runs pushed me to new personal bests I never thought possible.",
-    by: "David Rodriguez, Speed Demon",
-    imgSrc: "https://api.dicebear.com/7.x/initials/svg?seed=DavidRodriguez&backgroundColor=ef4444&textColor=ffffff",
+      "I've done the therapy, read the books, attended the retreats. Nothing prepared me for what became possible inside this structure.",
+    by: "D.R., Soul Initiation Alumni",
+    imgSrc: "https://api.dicebear.com/7.x/initials/svg?seed=DR&backgroundColor=333333&textColor=ffffff",
   },
   {
     tempId: 4,
     testimonial:
-      "Wadada taught me that running isn't just exercise—it's therapy, friendship, and adventure all rolled into one. This club saved my mental health.",
-    by: "Emma Thompson, Mindful Runner",
-    imgSrc: "https://api.dicebear.com/7.x/initials/svg?seed=EmmaThompson&backgroundColor=f59e0b&textColor=ffffff",
-  },
-  {
-    tempId: 5,
-    testimonial:
-      "From couch to 10K in 6 months with Wadada's support. They meet you where you are and help you discover where you can go. Pure magic.",
-    by: "James Wilson, Beginner Success",
-    imgSrc: "https://api.dicebear.com/7.x/initials/svg?seed=JamesWilson&backgroundColor=6366f1&textColor=ffffff",
-  },
-  {
-    tempId: 6,
-    testimonial:
-      "The sunrise runs with Wadada are spiritual experiences. There's something powerful about moving together as the world wakes up around us.",
-    by: "Aisha Mohammed, Dawn Patrol",
-    imgSrc: "https://api.dicebear.com/7.x/initials/svg?seed=AishaMohammed&backgroundColor=ec4899&textColor=ffffff",
-  },
-  {
-    tempId: 7,
-    testimonial:
-      "I joined Wadada after moving to a new city. Not only did I find my running tribe, but I found my chosen family. Movement truly is lifestyle here.",
-    by: "Alex Kim, Community Builder",
-    imgSrc: "https://api.dicebear.com/7.x/initials/svg?seed=AlexKim&backgroundColor=06b6d4&textColor=ffffff",
-  },
-  {
-    tempId: 8,
-    testimonial:
-      "Wadada celebrates every victory, no matter how small. My first mile felt like winning the Olympics with this crew cheering me on.",
-    by: "Lisa Garcia, First Mile Hero",
-    imgSrc: "https://api.dicebear.com/7.x/initials/svg?seed=LisaGarcia&backgroundColor=f97316&textColor=ffffff",
-  },
-  {
-    tempId: 9,
-    testimonial:
-      "The training plans at Wadada are incredible. I went from barely finishing a 5K to qualifying for Boston in just two years.",
-    by: "Michael Chen, Boston Qualifier",
-    imgSrc: "https://api.dicebear.com/7.x/initials/svg?seed=MichaelChen&backgroundColor=84cc16&textColor=ffffff",
-  },
-  {
-    tempId: 10,
-    testimonial:
-      "What I love about Wadada is the diversity. Runners of all ages, backgrounds, and abilities come together with one shared passion.",
-    by: "Sofia Rodriguez, Diversity Champion",
-    imgSrc: "https://api.dicebear.com/7.x/initials/svg?seed=SofiaRodriguez&backgroundColor=a855f7&textColor=ffffff",
-  },
-  {
-    tempId: 11,
-    testimonial:
-      "The accountability at Wadada is unmatched. When you know your running family is waiting for you, you show up no matter what.",
-    by: "Tyler Brooks, Consistency King",
-    imgSrc: "https://api.dicebear.com/7.x/initials/svg?seed=TylerBrooks&backgroundColor=059669&textColor=ffffff",
-  },
-  {
-    tempId: 12,
-    testimonial:
-      "Wadada's trail running group introduced me to the most beautiful places I never knew existed. Running became my way to explore the world.",
-    by: "Nina Patel, Trail Explorer",
-    imgSrc: "https://api.dicebear.com/7.x/initials/svg?seed=NinaPatel&backgroundColor=0ea5e9&textColor=ffffff",
-  },
-  {
-    tempId: 13,
-    testimonial:
-      "The post-run conversations at Wadada are as valuable as the runs themselves. We solve the world's problems one mile at a time.",
-    by: "Robert Kim, Philosophy Runner",
-    imgSrc: "https://api.dicebear.com/7.x/initials/svg?seed=RobertKim&backgroundColor=dc2626&textColor=ffffff",
-  },
-  {
-    tempId: 14,
-    testimonial:
-      "I never thought I'd be a runner, but Wadada's beginner-friendly approach made it possible. Now I can't imagine life without running.",
-    by: "Jessica Martinez, Late Bloomer",
-    imgSrc: "https://api.dicebear.com/7.x/initials/svg?seed=JessicaMartinez&backgroundColor=7c3aed&textColor=ffffff",
-  },
-  {
-    tempId: 15,
-    testimonial:
-      "The injury support at Wadada is incredible. When I was sidelined, they kept me motivated and helped me come back stronger.",
-    by: "Daniel Park, Comeback Story",
-    imgSrc: "https://api.dicebear.com/7.x/initials/svg?seed=DanielPark&backgroundColor=ea580c&textColor=ffffff",
-  },
-  {
-    tempId: 16,
-    testimonial:
-      "Wadada's charity runs give our miles meaning. We're not just running for ourselves, we're running to make a difference.",
-    by: "Rachel Green, Charity Champion",
-    imgSrc: "https://api.dicebear.com/7.x/initials/svg?seed=RachelGreen&backgroundColor=16a34a&textColor=ffffff",
-  },
-  {
-    tempId: 17,
-    testimonial:
-      "The technique workshops at Wadada transformed my running form. I'm faster and injury-free thanks to their expert guidance.",
-    by: "Kevin Wong, Form Perfectionist",
-    imgSrc: "https://api.dicebear.com/7.x/initials/svg?seed=KevinWong&backgroundColor=2563eb&textColor=ffffff",
-  },
-  {
-    tempId: 18,
-    testimonial:
-      "Wadada's virtual runs during lockdown kept me sane. Even when we couldn't run together, we stayed connected as a community.",
-    by: "Amanda Foster, Virtual Warrior",
-    imgSrc: "https://api.dicebear.com/7.x/initials/svg?seed=AmandaFoster&backgroundColor=be185d&textColor=ffffff",
-  },
-  {
-    tempId: 19,
-    testimonial:
-      "The mentorship at Wadada is life-changing. Experienced runners take newcomers under their wing and share their wisdom generously.",
-    by: "Carlos Mendez, Grateful Mentee",
-    imgSrc: "https://api.dicebear.com/7.x/initials/svg?seed=CarlosMendez&backgroundColor=0891b2&textColor=ffffff",
+      "The arc is real. I didn't believe it at first — but there's a before and an after now. Six months changed the direction of my life.",
+    by: "E.T., Program Participant",
+    imgSrc: "https://api.dicebear.com/7.x/initials/svg?seed=ET&backgroundColor=444444&textColor=ffffff",
   },
 ]
 

@@ -20,7 +20,7 @@ export default function Footer() {
             viewport={{ once: true }}
             className="lg:col-span-2"
           >
-            <h3 className="text-3xl md:text-4xl font-black tracking-wider text-gray-900 mb-4">WADADA RUN CLUB</h3>
+            <h3 className="text-3xl md:text-4xl font-black tracking-wider text-gray-900 mb-4">SOUL INITIATION</h3>
             <p className="text-lg text-gray-600 leading-relaxed mb-6 max-w-md">
               Movement isn't an option, it's a lifestyle. Join our global community of runners who believe in pushing
               boundaries and celebrating every step of the journey.
@@ -159,7 +159,7 @@ export default function Footer() {
           viewport={{ once: true }}
           className="border-t border-gray-200 pt-8 flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0"
         >
-          <p className="text-gray-600 font-medium">© 2024 Wadada Run Club. All rights reserved.</p>
+          <p className="text-gray-600 font-medium">© 2025 Soul Initiation. All rights reserved.</p>
 
           <div className="flex space-x-6">
             <a href="#" className="text-gray-600 hover:text-gray-900 transition-colors duration-300 font-medium">

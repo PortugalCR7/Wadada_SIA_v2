@@ -63,7 +63,7 @@ export default async function LoginPage({
 
         {/* Footer note */}
         <p className="mt-10 text-center text-[10px] tracking-[0.3em] text-zinc-800 uppercase">
-          Wadada Run Club
+          Soul Initiation
         </p>
       </div>
     </div>

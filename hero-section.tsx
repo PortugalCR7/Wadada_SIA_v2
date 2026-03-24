@@ -112,9 +112,9 @@ export default function HeroSection() {
           
           {/* Main Title */}
           <h1 className="text-6xl md:text-8xl lg:text-[10rem] font-serif font-black tracking-tighter mb-6 leading-[0.9] text-transparent bg-clip-text bg-gradient-to-b from-white to-zinc-500">
-            WADADA
+            SOUL
             <br />
-            <span className="italic font-light opacity-90">RUN CLUB</span>
+            <span className="italic font-light opacity-90">INITIATION</span>
           </h1>
 
           {/* Subtitle */}

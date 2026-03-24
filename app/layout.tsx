@@ -23,8 +23,8 @@ const cormorant = Cormorant_Garamond({
 })
 
 export const metadata: Metadata = {
-  title: 'Wadada Run Club | Soul Initiation',
-  description: 'A premium community for runners.',
+  title: 'Soul Initiation',
+  description: 'A six-month container for real transition. Soul Initiation guides individuals through the threshold of meaningful change.',
 }
 
 export default function RootLayout({
