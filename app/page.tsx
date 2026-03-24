@@ -94,6 +94,8 @@ export default async function HomePage() {
   const fitItems = whoForItems.filter((w) => w.column === "fit")
   const notFitItems = whoForItems.filter((w) => w.column === "not_fit")
 
+  const testimonialsSectionTitle = testimonials[0]?.section_title || "Voice of the Crossing"
+
   const narrativeGuide = guides[0] ?? null
   const guideProfiles = guides.slice(1).map((g) => ({
     image_url: g.image_url,
@@ -338,7 +340,7 @@ export default async function HomePage() {
       {/* Testimonials */}
       <section className="py-32 bg-white relative">
         <div className="container mx-auto px-6 text-center mb-16">
-          <h2 className="font-accent italic text-3xl md:text-5xl text-black mb-4 font-light tracking-wide">Voice of the Crossing</h2>
+          <h2 className="text-4xl md:text-6xl font-black tracking-tighter uppercase mb-4">{testimonialsSectionTitle}</h2>
         </div>
         <AnimatedTestimonials testimonials={testimonialsForComponent} autoplay />
       </section>

@@ -9,6 +9,7 @@ export default async function TestimonialsForm() {
   async function save(prev: ActionState, formData: FormData): Promise<ActionState> {
     "use server"
     try {
+      const sectionTitle = formData.get("section_title") as string ?? ""
       const quotes = formData.getAll("quote") as string[]
       const names = formData.getAll("author_name") as string[]
       const roles = formData.getAll("author_role") as string[]
@@ -18,6 +19,7 @@ export default async function TestimonialsForm() {
         author_name: names[i] ?? "",
         author_role: roles[i] ?? "",
         avatar_url: avatars[i] ?? "",
+        section_title: sectionTitle,
         sort_order: i,
       }))
       await replaceList("si_testimonials", rows)

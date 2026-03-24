@@ -106,6 +106,7 @@ export interface Testimonial {
   author_name: string
   author_role: string
   avatar_url: string
+  section_title: string
 }
 
 export interface Investment {

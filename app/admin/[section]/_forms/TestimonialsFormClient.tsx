@@ -26,6 +26,8 @@ export function TestimonialsFormClient({ items, action }: TestimonialsFormClient
   const [state, formAction] = useActionState(action, initial)
   const list = items.length > 0 ? items : [emptyItem]
 
+  const sectionTitle = items[0]?.section_title ?? ""
+
   return (
     <div className="space-y-8">
       <h2 className="text-3xl font-black uppercase tracking-tighter">Testimonials</h2>
@@ -36,6 +38,10 @@ export function TestimonialsFormClient({ items, action }: TestimonialsFormClient
         <div className="bg-red-950 border border-red-700 text-red-300 px-4 py-3 text-sm">{state.error}</div>
       )}
       <form action={formAction} className="space-y-8">
+        <div>
+          <label className="block text-xs uppercase tracking-widest text-zinc-400 mb-2">Section Title</label>
+          <input type="text" name="section_title" defaultValue={sectionTitle} className="w-full bg-zinc-900 border border-zinc-700 text-white px-4 py-3 focus:outline-none focus:border-white" />
+        </div>
         {list.map((item, i) => (
           <fieldset key={item.id} className="border border-zinc-800 p-6 space-y-4">
             <legend className="text-xs uppercase tracking-widest text-zinc-500 px-2">Testimonial {i + 1}</legend>
