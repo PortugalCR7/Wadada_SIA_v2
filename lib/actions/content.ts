@@ -28,7 +28,7 @@ export async function replaceList(
   rows: Record<string, unknown>[]
 ) {
   const supabase = createSupabaseAdminClient()
-  const { error: delError } = await supabase.from(table).delete().neq("id", "")
+  const { error: delError } = await supabase.from(table).delete().not("id", "is", null)
   if (delError) throw new Error(`replaceList delete(${table}): ${delError.message}`)
   if (rows.length > 0) {
     const { error: insError } = await supabase.from(table).insert(rows)

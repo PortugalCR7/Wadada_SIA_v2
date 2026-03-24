@@ -24,6 +24,9 @@ import { getInvestment } from "@/lib/content/investment"
 import { getNextSteps } from "@/lib/content/next-steps"
 import { getFinalCta } from "@/lib/content/final-cta"
 import { getFooterClosing } from "@/lib/content/footer"
+import { getNavLinks } from "@/lib/content/nav-links"
+import { getSocialLinks } from "@/lib/content/social-links"
+import Footer from "@/components/footer"
 
 export const revalidate = 60
 
@@ -47,6 +50,8 @@ export default async function HomePage() {
     nextSteps,
     finalCta,
     footerClosing,
+    navLinks,
+    socialLinks,
   ] = await Promise.all([
     getHeroSlides(),
     getIntro(),
@@ -66,6 +71,8 @@ export default async function HomePage() {
     getNextSteps(),
     getFinalCta(),
     getFooterClosing(),
+    getNavLinks(),
+    getSocialLinks(),
   ])
 
   const arcTimelineEntries = arcEntries.map((e) => ({
@@ -105,7 +112,7 @@ export default async function HomePage() {
         444
       </div>
 
-      <SoulInitiationHero slides={heroSlides} />
+      <SoulInitiationHero slides={heroSlides} navLinks={navLinks} />
 
       {/* Intro Section */}
       <section id="threshold" className="relative py-32 bg-white overflow-hidden">
@@ -168,7 +175,7 @@ export default async function HomePage() {
                 <div className="space-y-8">
                   {thresholdItems.map((item) => (
                     <div key={item.id} className="border-b border-zinc-100 pb-8 last:border-0 hover:translate-x-2 transition-all duration-300 group cursor-default">
-                      <h4 className="text-2xl font-black mb-2 uppercase group-hover:bg-black group-hover:text-white px-2 -mx-2 inline-block transition-all duration-200">{item.title}</h4>
+                      <h4 className="text-2xl font-black mb-2 uppercase text-black group-hover:bg-black group-hover:text-white px-2 -mx-2 inline-block transition-all duration-200">{item.title}</h4>
                       <p className="text-zinc-500 group-hover:text-zinc-800 transition-colors">{item.description}</p>
                     </div>
                   ))}
@@ -354,49 +361,11 @@ export default async function HomePage() {
         </div>
       </section>
 
-      {/* Footer */}
-      <footer className="py-32 bg-black text-white relative">
-        <div className="container mx-auto px-6">
-          <div className="max-w-4xl mx-auto">
-            <div className="grid md:grid-cols-2 gap-16 items-end">
-              <div className="space-y-8">
-                <h3 className="text-2xl md:text-3xl font-black tracking-tight leading-snug uppercase">
-                  {footerClosing?.body_copy ?? ""}
-                </h3>
-                <p className="font-accent italic text-2xl text-zinc-400 leading-relaxed border-l-4 border-white pl-8 py-2 font-light">
-                  You need a structure capable of holding the actual crossing.
-                </p>
-              </div>
-              <div className="space-y-6">
-                <p className="text-zinc-400 uppercase tracking-widest font-black text-xs">Availability</p>
-                <p className="text-lg leading-relaxed">{footerClosing?.availability_text ?? ""}</p>
-                <div className="flex items-center gap-4 text-white/20 font-black text-4xl">444</div>
-              </div>
-            </div>
-
-            {/* Email Capture Form */}
-            <form
-              action="/api/subscribe"
-              method="POST"
-              className="mt-24 border-t border-white/10 pt-16 flex flex-col sm:flex-row gap-4 max-w-lg"
-            >
-              <input
-                type="email"
-                name="email"
-                required
-                placeholder="Your email"
-                className="flex-1 bg-black border border-zinc-700 text-white px-6 py-4 focus:outline-none focus:border-white placeholder:text-zinc-600"
-              />
-              <button
-                type="submit"
-                className="bg-white text-black font-black uppercase tracking-widest px-8 py-4 hover:bg-zinc-200 transition-colors whitespace-nowrap"
-              >
-                Stay Connected
-              </button>
-            </form>
-          </div>
-        </div>
-      </footer>
+      <Footer
+        navLinks={navLinks}
+        socialLinks={socialLinks}
+        copyrightText={footerClosing?.copyright_text}
+      />
 
       <Chatbot />
     </div>
