@@ -366,7 +366,7 @@ export default async function HomePage() {
       <Footer
         navLinks={navLinks}
         socialLinks={socialLinks}
-        copyrightText={footerClosing?.copyright_text}
+        footerData={footerClosing ?? undefined}
       />
 
       <Chatbot />

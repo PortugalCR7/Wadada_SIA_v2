@@ -138,6 +138,18 @@ export interface FooterClosing {
   body_copy: string
   availability_text: string
   copyright_text: string
+  brand_heading: string
+  brand_description: string
+  contact_location: string
+  contact_email: string
+  contact_phone: string
+  newsletter_heading: string
+  newsletter_description: string
+  newsletter_button_text: string
+  privacy_policy_label: string
+  privacy_policy_url: string
+  terms_label: string
+  terms_url: string
 }
 
 export interface NavLink {
