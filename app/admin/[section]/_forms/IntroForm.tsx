@@ -1,5 +1,6 @@
 import { getIntro } from "@/lib/content/intro"
 import { upsertSingleton } from "@/lib/actions/content"
+import { RichTextField } from "@/components/admin/rich-text-field"
 
 export default async function IntroForm() {
   const intro = await getIntro()
@@ -19,7 +20,7 @@ export default async function IntroForm() {
       <form action={save} className="space-y-6">
         <Field name="eyebrow" label="Eyebrow" defaultValue={intro?.eyebrow ?? ""} />
         <Field name="heading" label="Heading" defaultValue={intro?.heading ?? ""} textarea />
-        <Field name="subtext" label="Subtext" defaultValue={intro?.subtext ?? ""} textarea />
+        <RichTextField name="subtext" label="Subtext" defaultValue={intro?.subtext ?? ""} />
         <SaveButton />
       </form>
     </div>

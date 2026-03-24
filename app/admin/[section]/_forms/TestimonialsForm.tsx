@@ -1,5 +1,6 @@
 import { getTestimonials } from "@/lib/content/testimonials"
 import { replaceList } from "@/lib/actions/content"
+import { RichTextField } from "@/components/admin/rich-text-field"
 
 export default async function TestimonialsForm() {
   const items = await getTestimonials()
@@ -27,10 +28,7 @@ export default async function TestimonialsForm() {
         {(items.length > 0 ? items : [{ quote: "", author_name: "", author_role: "", avatar_url: "" }]).map((item, i) => (
           <fieldset key={i} className="border border-zinc-800 p-6 space-y-4">
             <legend className="text-xs uppercase tracking-widest text-zinc-500 px-2">Testimonial {i + 1}</legend>
-            <div>
-              <label className="block text-xs uppercase tracking-widest text-zinc-400 mb-2">Quote</label>
-              <textarea name="quote" defaultValue={item.quote} rows={3} className="w-full bg-zinc-900 border border-zinc-700 text-white px-4 py-3 focus:outline-none focus:border-white" />
-            </div>
+            <RichTextField name="quote" label="Quote" defaultValue={item.quote} />
             <div>
               <label className="block text-xs uppercase tracking-widest text-zinc-400 mb-2">Author Name</label>
               <input type="text" name="author_name" defaultValue={item.author_name} className="w-full bg-zinc-900 border border-zinc-700 text-white px-4 py-3 focus:outline-none focus:border-white" />

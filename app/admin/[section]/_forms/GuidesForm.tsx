@@ -1,5 +1,6 @@
 import { getGuides } from "@/lib/content/guides"
 import { replaceList } from "@/lib/actions/content"
+import { RichTextField } from "@/components/admin/rich-text-field"
 
 export default async function GuidesForm() {
   const guides = await getGuides()
@@ -40,14 +41,8 @@ export default async function GuidesForm() {
               <label className="block text-xs uppercase tracking-widest text-zinc-400 mb-2">Heading</label>
               <input type="text" name="heading" defaultValue={guide.heading} className="w-full bg-zinc-900 border border-zinc-700 text-white px-4 py-3 focus:outline-none focus:border-white" />
             </div>
-            <div>
-              <label className="block text-xs uppercase tracking-widest text-zinc-400 mb-2">Body Paragraph 1</label>
-              <textarea name="body_paragraph_1" defaultValue={guide.body_paragraph_1} rows={3} className="w-full bg-zinc-900 border border-zinc-700 text-white px-4 py-3 focus:outline-none focus:border-white" />
-            </div>
-            <div>
-              <label className="block text-xs uppercase tracking-widest text-zinc-400 mb-2">Body Paragraph 2</label>
-              <textarea name="body_paragraph_2" defaultValue={guide.body_paragraph_2} rows={3} className="w-full bg-zinc-900 border border-zinc-700 text-white px-4 py-3 focus:outline-none focus:border-white" />
-            </div>
+            <RichTextField name="body_paragraph_1" label="Body Paragraph 1" defaultValue={guide.body_paragraph_1} />
+            <RichTextField name="body_paragraph_2" label="Body Paragraph 2" defaultValue={guide.body_paragraph_2} />
             <div>
               <label className="block text-xs uppercase tracking-widest text-zinc-400 mb-2">CTA Label</label>
               <input type="text" name="cta_label" defaultValue={guide.cta_label} className="w-full bg-zinc-900 border border-zinc-700 text-white px-4 py-3 focus:outline-none focus:border-white" />
