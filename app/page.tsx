@@ -104,7 +104,7 @@ export default async function HomePage() {
             </h2>
             <TextGradientScroll
               text={intro?.heading ?? ""}
-              className="text-3xl md:text-5xl lg:text-6xl font-black tracking-tight leading-[1.1] text-black"
+              className="text-3xl md:text-5xl lg:text-6xl font-black tracking-tight leading-[1.1] text-black justify-center"
               type="word"
               textOpacity="soft"
             />

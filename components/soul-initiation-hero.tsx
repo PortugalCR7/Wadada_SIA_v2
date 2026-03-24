@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { LiquidButton } from "@/components/ui/liquid-glass-button"
 import { Menu, ChevronLeft, ChevronRight, X } from "lucide-react"
 import type { HeroSlide } from "@/lib/content/types"
@@ -29,6 +29,7 @@ const HARDCODED_FALLBACK_SLIDES = [
 export function SoulInitiationHero({ slides: cmsSlides }: { slides?: HeroSlide[] }) {
   const [currentSlide, setCurrentSlide] = useState(0)
   const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const [isPaused, setIsPaused] = useState(false)
 
   const slides = cmsSlides && cmsSlides.length > 0
     ? cmsSlides.map((s) => ({
@@ -50,6 +51,12 @@ export function SoulInitiationHero({ slides: cmsSlides }: { slides?: HeroSlide[]
   const nextSlide = () => setCurrentSlide((prev) => (prev + 1) % slides.length)
   const prevSlide = () => setCurrentSlide((prev) => (prev - 1 + slides.length) % slides.length)
 
+  useEffect(() => {
+    if (isPaused) return
+    const timer = setInterval(nextSlide, 5000)
+    return () => clearInterval(timer)
+  }, [isPaused, slides.length])
+
   const scrollToSection = (href: string) => {
     const element = document.querySelector(href)
     if (element) {
@@ -59,7 +66,12 @@ export function SoulInitiationHero({ slides: cmsSlides }: { slides?: HeroSlide[]
   }
 
   return (
-    <div id="hero" className="relative h-screen w-full overflow-hidden bg-black">
+    <div
+      id="hero"
+      className="relative h-screen w-full overflow-hidden bg-black"
+      onMouseEnter={() => setIsPaused(true)}
+      onMouseLeave={() => setIsPaused(false)}
+    >
       {/* Background Image */}
       <div
         className="absolute inset-0 bg-cover bg-center bg-no-repeat transition-all duration-1000 ease-in-out"
