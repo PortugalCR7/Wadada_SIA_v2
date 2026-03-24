@@ -38,6 +38,14 @@ export function GuidesFormClient({ guides, action }: GuidesFormClientProps) {
     setList((prev) => prev.filter((_, i) => i !== index))
   }
 
+  function updateField(index: number, field: keyof Guide, value: string) {
+    setList((prev) =>
+      prev.map((g, i) => (i === index ? { ...g, [field]: value } : g))
+    )
+  }
+
+  const inputClass = "w-full bg-zinc-900 border border-zinc-700 text-white px-4 py-3 focus:outline-none focus:border-white"
+
   return (
     <div className="space-y-8">
       <h2 className="text-3xl font-black uppercase tracking-tighter">The Guides</h2>
@@ -81,8 +89,9 @@ export function GuidesFormClient({ guides, action }: GuidesFormClientProps) {
                 <input
                   type="text"
                   name="heading"
-                  defaultValue={guide.heading}
-                  className="w-full bg-zinc-900 border border-zinc-700 text-white px-4 py-3 focus:outline-none focus:border-white"
+                  value={guide.heading}
+                  onChange={(e) => updateField(i, "heading", e.target.value)}
+                  className={inputClass}
                 />
               </div>
 
@@ -105,9 +114,10 @@ export function GuidesFormClient({ guides, action }: GuidesFormClientProps) {
                     <input
                       type="text"
                       name="cta_label"
-                      defaultValue={guide.cta_label}
+                      value={guide.cta_label}
+                      onChange={(e) => updateField(i, "cta_label", e.target.value)}
                       placeholder="e.g. Presence"
-                      className="w-full bg-zinc-900 border border-zinc-700 text-white px-4 py-3 focus:outline-none focus:border-white"
+                      className={inputClass}
                     />
                   </div>
                   <div>
@@ -117,9 +127,10 @@ export function GuidesFormClient({ guides, action }: GuidesFormClientProps) {
                     <input
                       type="text"
                       name="section_title"
-                      defaultValue={guide.section_title}
+                      value={guide.section_title}
+                      onChange={(e) => updateField(i, "section_title", e.target.value)}
                       placeholder="e.g. Soul Initiation Guides"
-                      className="w-full bg-zinc-900 border border-zinc-700 text-white px-4 py-3 focus:outline-none focus:border-white"
+                      className={inputClass}
                     />
                   </div>
                   {/* hidden cta_url to keep field counts aligned */}
@@ -134,18 +145,20 @@ export function GuidesFormClient({ guides, action }: GuidesFormClientProps) {
                     <input
                       type="text"
                       name="body_paragraph_1"
-                      defaultValue={guide.body_paragraph_1}
+                      value={guide.body_paragraph_1}
+                      onChange={(e) => updateField(i, "body_paragraph_1", e.target.value)}
                       placeholder="e.g. Lead Guide & Founder"
-                      className="w-full bg-zinc-900 border border-zinc-700 text-white px-4 py-3 focus:outline-none focus:border-white"
+                      className={inputClass}
                     />
                   </div>
                   <div>
                     <label className="block text-xs uppercase tracking-widest text-zinc-400 mb-2">Bio</label>
                     <textarea
                       name="body_paragraph_2"
-                      defaultValue={guide.body_paragraph_2}
+                      value={guide.body_paragraph_2}
+                      onChange={(e) => updateField(i, "body_paragraph_2", e.target.value)}
                       rows={4}
-                      className="w-full bg-zinc-900 border border-zinc-700 text-white px-4 py-3 focus:outline-none focus:border-white resize-y"
+                      className={`${inputClass} resize-y`}
                     />
                   </div>
                   <div>
@@ -155,9 +168,10 @@ export function GuidesFormClient({ guides, action }: GuidesFormClientProps) {
                     <input
                       type="text"
                       name="cta_label"
-                      defaultValue={guide.cta_label}
+                      value={guide.cta_label}
+                      onChange={(e) => updateField(i, "cta_label", e.target.value)}
                       placeholder="e.g. Find Out More"
-                      className="w-full bg-zinc-900 border border-zinc-700 text-white px-4 py-3 focus:outline-none focus:border-white"
+                      className={inputClass}
                     />
                   </div>
                   <div>
@@ -167,9 +181,10 @@ export function GuidesFormClient({ guides, action }: GuidesFormClientProps) {
                     <input
                       type="text"
                       name="cta_url"
-                      defaultValue={guide.cta_url}
+                      value={guide.cta_url}
+                      onChange={(e) => updateField(i, "cta_url", e.target.value)}
                       placeholder="https://..."
-                      className="w-full bg-zinc-900 border border-zinc-700 text-white px-4 py-3 focus:outline-none focus:border-white"
+                      className={inputClass}
                     />
                   </div>
                   {/* hidden section_title to keep field counts aligned */}
