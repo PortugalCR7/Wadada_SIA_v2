@@ -340,7 +340,7 @@ export default async function HomePage() {
       {/* Testimonials */}
       <section className="py-32 bg-white relative">
         <div className="container mx-auto px-6 text-center mb-16">
-          <h2 className="text-4xl md:text-6xl font-black tracking-tighter uppercase mb-4">{testimonialsSectionTitle}</h2>
+          <h2 className="text-4xl md:text-6xl font-black tracking-tighter uppercase mb-4 text-black">{testimonialsSectionTitle}</h2>
         </div>
         <AnimatedTestimonials testimonials={testimonialsForComponent} autoplay />
       </section>
