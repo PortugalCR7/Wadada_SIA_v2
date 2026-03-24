@@ -44,15 +44,15 @@ export function AnimatedGuides({
   if (guides.length === 0) return null
 
   return (
-    <section className="py-32 bg-white border-t border-zinc-100">
+    <section className="py-32 bg-black border-t border-zinc-900">
       <div className="container mx-auto px-6">
         {/* Section heading */}
         {sectionTitle && (
           <div className="text-center mb-20">
-            <h2 className="text-4xl md:text-5xl font-black uppercase tracking-tighter text-black">
+            <h2 className="text-4xl md:text-5xl font-black uppercase tracking-tighter text-white">
               {sectionTitle}
             </h2>
-            <div className="w-12 h-[2px] bg-black mx-auto mt-6" />
+            <div className="w-12 h-[2px] bg-white mx-auto mt-6" />
           </div>
         )}
 
@@ -77,7 +77,7 @@ export function AnimatedGuides({
                     className="absolute inset-0 origin-bottom cursor-pointer"
                     onClick={() => setActive(index)}
                   >
-                    <div className="relative h-full w-full bg-zinc-200">
+                    <div className="relative h-full w-full bg-zinc-800">
                       {guide.image_url ? (
                         <Image
                           src={guide.image_url}
@@ -87,8 +87,8 @@ export function AnimatedGuides({
                           className="object-cover object-center filter grayscale"
                         />
                       ) : (
-                        <div className="h-full w-full bg-zinc-300 flex items-center justify-center">
-                          <span className="text-zinc-500 text-sm uppercase tracking-widest">No image</span>
+                        <div className="h-full w-full bg-zinc-700 flex items-center justify-center">
+                          <span className="text-zinc-400 text-sm uppercase tracking-widest">No image</span>
                         </div>
                       )}
                     </div>
@@ -108,7 +108,7 @@ export function AnimatedGuides({
                 className="space-y-4"
               >
                 <div>
-                  <h3 className="text-3xl font-black uppercase tracking-tighter text-black">
+                  <h3 className="text-3xl font-black uppercase tracking-tighter text-white">
                     {guides[active].name}
                   </h3>
                   {guides[active].title && (
@@ -118,7 +118,7 @@ export function AnimatedGuides({
                   )}
                 </div>
 
-                <motion.p className="text-base text-zinc-500 leading-relaxed">
+                <motion.p className="text-base text-zinc-300 leading-relaxed">
                   {guides[active].bio.split(" ").map((word, i) => (
                     <motion.span
                       key={i}
@@ -135,7 +135,7 @@ export function AnimatedGuides({
                 {guides[active].cta_label && guides[active].cta_url && (
                   <a
                     href={guides[active].cta_url} target="_blank" rel="noopener noreferrer"
-                    className="inline-block text-sm uppercase tracking-widest font-black border-b border-black pb-1 hover:text-zinc-500 transition-colors mt-2"
+                    className="inline-block text-sm uppercase tracking-widest font-black border-b border-white text-white pb-1 hover:text-zinc-400 hover:border-zinc-400 transition-colors mt-2"
                   >
                     {guides[active].cta_label} →
                   </a>
@@ -147,19 +147,19 @@ export function AnimatedGuides({
                 <div className="flex items-center gap-4 pt-10">
                   <button
                     onClick={handlePrev}
-                    className="h-9 w-9 rounded-full border border-zinc-200 flex items-center justify-center hover:border-black transition-colors group"
+                    className="h-9 w-9 rounded-full border border-zinc-700 flex items-center justify-center hover:border-white transition-colors group"
                     aria-label="Previous guide"
                   >
-                    <IconArrowLeft className="h-4 w-4 text-black group-hover:rotate-12 transition-transform duration-300" />
+                    <IconArrowLeft className="h-4 w-4 text-white group-hover:rotate-12 transition-transform duration-300" />
                   </button>
                   <button
                     onClick={handleNext}
-                    className="h-9 w-9 rounded-full border border-zinc-200 flex items-center justify-center hover:border-black transition-colors group"
+                    className="h-9 w-9 rounded-full border border-zinc-700 flex items-center justify-center hover:border-white transition-colors group"
                     aria-label="Next guide"
                   >
-                    <IconArrowRight className="h-4 w-4 text-black group-hover:-rotate-12 transition-transform duration-300" />
+                    <IconArrowRight className="h-4 w-4 text-white group-hover:-rotate-12 transition-transform duration-300" />
                   </button>
-                  <span className="text-xs text-zinc-400 uppercase tracking-widest font-medium ml-2">
+                  <span className="text-xs text-zinc-500 uppercase tracking-widest font-medium ml-2">
                     {active + 1} / {guides.length}
                   </span>
                 </div>
