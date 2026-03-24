@@ -39,6 +39,26 @@ const REGISTRY: Record<string, (...args: any[]) => any> = {
   "subscribers":          SubscribersView,
 }
 
+const SECTION_LABELS: Record<string, string> = {
+  "hero":                 "Hero Slides",
+  "intro":                "Intro",
+  "recognition":          "Do You Recognize This?",
+  "threshold":            "Threshold Definition",
+  "philosophical-bridge": "Philosophical Bridge",
+  "program-definition":   "This Is Not / This Is",
+  "arc":                  "Arc of Initiation",
+  "requirements":         "Requirements",
+  "who-for":              "Who This Is For",
+  "changes":              "What Tends to Change",
+  "guides":               "The Guides",
+  "testimonials":         "Testimonials",
+  "investment":           "Investment",
+  "next-steps":           "Next Steps",
+  "final-cta":            "Final CTA",
+  "footer":               "Footer Closing",
+  "subscribers":          "Subscribers",
+}
+
 export default async function SectionPage({
   params,
 }: {
@@ -47,12 +67,22 @@ export default async function SectionPage({
   const { section } = await params
   const Form = REGISTRY[section]
   if (!Form) notFound()
+
   return (
-    <div className="max-w-2xl">
-      <a href="/admin" className="text-xs text-zinc-500 hover:text-white uppercase tracking-widest mb-8 block transition-colors">
-        ← Back
-      </a>
-      <Form />
+    <div className="p-10">
+      {/* Breadcrumb */}
+      <div className="flex items-center gap-2 mb-10 text-[10px] tracking-[0.3em] uppercase">
+        <a href="/admin" className="text-zinc-700 hover:text-zinc-400 transition-colors">
+          Admin
+        </a>
+        <span className="text-zinc-800">/</span>
+        <span className="text-zinc-500">{SECTION_LABELS[section] ?? section}</span>
+      </div>
+
+      {/* Form content */}
+      <div className="max-w-2xl">
+        <Form />
+      </div>
     </div>
   )
 }
