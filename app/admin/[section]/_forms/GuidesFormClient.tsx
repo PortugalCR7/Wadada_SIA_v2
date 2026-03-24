@@ -1,6 +1,6 @@
 "use client"
 
-import { useActionState } from "react"
+import { useActionState, useState } from "react"
 import type { ActionState } from "@/lib/actions/types"
 import type { Guide } from "@/lib/content/types"
 import { ImageUploadField } from "@/components/admin/image-upload-field"
@@ -13,8 +13,8 @@ interface GuidesFormClientProps {
 
 const initial: ActionState = { success: false, error: null }
 
-const emptyGuide: Guide = {
-  id: "new",
+const emptyGuide = (): Guide => ({
+  id: `new-${Date.now()}`,
   image_url: "",
   heading: "",
   body_paragraph_1: "",
@@ -24,11 +24,19 @@ const emptyGuide: Guide = {
   section_title: "",
   sort_order: 0,
   active: true,
-}
+})
 
 export function GuidesFormClient({ guides, action }: GuidesFormClientProps) {
-  const [state, formAction] = useActionState(action, initial)
-  const list = guides.length > 0 ? guides : [emptyGuide]
+  const [state, formAction, isPending] = useActionState(action, initial)
+  const [list, setList] = useState<Guide[]>(guides.length > 0 ? guides : [emptyGuide()])
+
+  function addGuide() {
+    setList((prev) => [...prev, emptyGuide()])
+  }
+
+  function removeGuide(index: number) {
+    setList((prev) => prev.filter((_, i) => i !== index))
+  }
 
   return (
     <div className="space-y-8">
@@ -44,9 +52,20 @@ export function GuidesFormClient({ guides, action }: GuidesFormClientProps) {
           const isNarrative = i === 0
           return (
             <fieldset key={guide.id} className="border border-zinc-800 p-6 space-y-4">
-              <legend className="text-xs uppercase tracking-widest text-zinc-500 px-2">
-                {isNarrative ? "You Are Accompanied Section" : `Guide ${i} — Profile Card`}
-              </legend>
+              <div className="flex items-center justify-between">
+                <legend className="text-xs uppercase tracking-widest text-zinc-500 px-2">
+                  {isNarrative ? "You Are Accompanied Section" : `Guide ${i} — Profile Card`}
+                </legend>
+                {!isNarrative && (
+                  <button
+                    type="button"
+                    onClick={() => removeGuide(i)}
+                    className="text-xs uppercase tracking-widest text-red-500 hover:text-red-300 transition-colors px-2"
+                  >
+                    × Remove
+                  </button>
+                )}
+              </div>
 
               <ImageUploadField
                 name="image_url"
@@ -103,7 +122,7 @@ export function GuidesFormClient({ guides, action }: GuidesFormClientProps) {
                       className="w-full bg-zinc-900 border border-zinc-700 text-white px-4 py-3 focus:outline-none focus:border-white"
                     />
                   </div>
-                  {/* hidden cta_url placeholder to keep field counts aligned */}
+                  {/* hidden cta_url to keep field counts aligned */}
                   <input type="hidden" name="cta_url" value={guide.cta_url ?? ""} />
                 </>
               ) : (
@@ -153,7 +172,7 @@ export function GuidesFormClient({ guides, action }: GuidesFormClientProps) {
                       className="w-full bg-zinc-900 border border-zinc-700 text-white px-4 py-3 focus:outline-none focus:border-white"
                     />
                   </div>
-                  {/* hidden section_title placeholder to keep field counts aligned */}
+                  {/* hidden section_title to keep field counts aligned */}
                   <input type="hidden" name="section_title" value="" />
                 </>
               )}
@@ -161,15 +180,24 @@ export function GuidesFormClient({ guides, action }: GuidesFormClientProps) {
           )
         })}
 
+        <button
+          type="button"
+          onClick={addGuide}
+          disabled={isPending}
+          className="w-full border border-dashed border-zinc-700 text-zinc-500 hover:border-white hover:text-white transition-colors py-4 text-xs uppercase tracking-widest font-black disabled:opacity-50"
+        >
+          + Add Guide Card
+        </button>
+
         <p className="text-zinc-500 text-sm">
-          Note: First entry is always the "You Are Accompanied" section. Entries 2+ become carousel cards.
-          To add/remove guides use the Supabase dashboard.
+          Note: The first entry is always the "You Are Accompanied" section. Entries 2+ become carousel cards.
         </p>
         <button
           type="submit"
-          className="bg-white text-black font-black uppercase tracking-widest px-8 py-3 hover:bg-zinc-200 transition-colors"
+          disabled={isPending}
+          className="bg-white text-black font-black uppercase tracking-widest px-8 py-3 hover:bg-zinc-200 transition-colors disabled:opacity-50"
         >
-          Save
+          {isPending ? "Saving…" : "Save"}
         </button>
       </form>
     </div>
