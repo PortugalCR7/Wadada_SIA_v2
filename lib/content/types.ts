@@ -95,6 +95,7 @@ export interface Guide {
   body_paragraph_2: string
   cta_label: string
   cta_url: string
+  section_title: string
   active: boolean
 }
 
@@ -135,4 +136,22 @@ export interface FooterClosing {
   id: string
   body_copy: string
   availability_text: string
+  copyright_text: string
+}
+
+export interface NavLink {
+  id: string
+  label: string
+  href: string
+  open_in_new_tab: boolean
+  sort_order: number
+  active: boolean
+}
+
+export interface SocialLink {
+  id: string
+  platform: string
+  url: string
+  sort_order: number
+  active: boolean
 }

@@ -1,11 +1,12 @@
 import { SoulInitiationHero } from "@/components/soul-initiation-hero"
 import { TextGradientScroll } from "@/components/ui/text-gradient-scroll"
 import { Timeline } from "@/components/ui/timeline"
-import { StaggerTestimonials } from "@/components/ui/stagger-testimonials"
+import { AnimatedTestimonials } from "@/components/ui/animated-testimonials"
 import Chatbot from "@/components/chatbot"
 import { AnimatedBridge } from "@/components/soul-initiation/animated-bridge"
 import { AnimatedInvestment } from "@/components/soul-initiation/animated-investment"
 import { ProgramDefinitionSection } from "@/components/soul-initiation/program-definition-section"
+import { AnimatedGuides } from "@/components/ui/animated-guides"
 
 import { getHeroSlides } from "@/lib/content/hero"
 import { getIntro } from "@/lib/content/intro"
@@ -76,15 +77,26 @@ export default async function HomePage() {
     layout: e.layout_direction as "left" | "right",
   }))
 
-  const testimonialsForComponent = testimonials.map((t, i) => ({
-    tempId: i,
-    testimonial: t.quote,
-    by: t.author_role ? `${t.author_name} — ${t.author_role}` : t.author_name,
-    imgSrc: t.avatar_url,
+  const testimonialsForComponent = testimonials.map((t) => ({
+    quote: t.quote,
+    name: t.author_name,
+    designation: t.author_role,
+    src: t.avatar_url,
   }))
 
   const fitItems = whoForItems.filter((w) => w.column === "fit")
   const notFitItems = whoForItems.filter((w) => w.column === "not_fit")
+
+  const narrativeGuide = guides[0] ?? null
+  const guideProfiles = guides.slice(1).map((g) => ({
+    image_url: g.image_url,
+    name: g.heading,
+    title: g.body_paragraph_1,
+    bio: g.body_paragraph_2,
+    cta_label: g.cta_label,
+    cta_url: g.cta_url,
+  }))
+  const carouselSectionTitle = narrativeGuide?.section_title ?? "Soul Initiation Guides"
 
   return (
     <div className="min-h-screen bg-white selection:bg-black selection:text-white">
@@ -268,43 +280,60 @@ export default async function HomePage() {
       </section>
 
       {/* The Guides */}
-      {guides.map((guide) => (
-        <section key={guide.id} className="py-32 bg-white border-t border-zinc-100">
+      {narrativeGuide && (
+        <section className="py-32 bg-white border-t border-zinc-100">
           <div className="container mx-auto px-6">
             <div className="grid md:grid-cols-2 gap-24 items-center">
               <div className="relative">
                 <div className="aspect-[4/5] bg-zinc-200">
-                  <img src={guide.image_url} alt={guide.heading} className="w-full h-full object-cover filter grayscale" />
+                  <img
+                    src={narrativeGuide.image_url}
+                    alt={narrativeGuide.heading}
+                    className="w-full h-full object-cover filter grayscale"
+                  />
                 </div>
-                <div className="absolute -bottom-8 -right-8 bg-black text-white p-10 flex flex-col items-center justify-center">
-                  <span className="text-6xl font-black">444</span>
-                  <span className="text-[10px] uppercase font-bold tracking-[0.5em] mt-2 opacity-50">Presence</span>
-                </div>
+                {narrativeGuide.cta_label && (
+                  <div className="absolute -bottom-8 -right-8 bg-black text-white p-8 flex flex-col items-center justify-center max-w-[180px] text-center">
+                    <span className="text-sm font-medium leading-snug italic font-accent">
+                      {narrativeGuide.cta_label}
+                    </span>
+                  </div>
+                )}
               </div>
               <div className="space-y-8">
-                <h2 className="text-5xl font-black tracking-tighter uppercase leading-tight text-black"
-                    dangerouslySetInnerHTML={{ __html: guide.heading }} />
-                <div className="text-xl text-zinc-600 leading-relaxed font-medium"
-                     dangerouslySetInnerHTML={{ __html: guide.body_paragraph_1 }} />
-                <div className="text-lg text-zinc-500 leading-relaxed italic"
-                     dangerouslySetInnerHTML={{ __html: guide.body_paragraph_2 }} />
-                {guide.cta_label && (
-                  <a href={guide.cta_url} className="inline-block text-sm uppercase tracking-widest font-black border-b border-black pb-1 hover:text-zinc-500 transition-colors">
-                    {guide.cta_label} →
-                  </a>
-                )}
+                <h2
+                  className="text-5xl font-black tracking-tighter uppercase leading-tight text-black"
+                  dangerouslySetInnerHTML={{ __html: narrativeGuide.heading }}
+                />
+                <div
+                  className="text-xl text-zinc-600 leading-relaxed font-medium"
+                  dangerouslySetInnerHTML={{ __html: narrativeGuide.body_paragraph_1 }}
+                />
+                <div
+                  className="text-lg text-zinc-500 leading-relaxed italic"
+                  dangerouslySetInnerHTML={{ __html: narrativeGuide.body_paragraph_2 }}
+                />
               </div>
             </div>
           </div>
         </section>
-      ))}
+      )}
+
+      {/* Guide Profiles Carousel */}
+      {guideProfiles.length > 0 && (
+        <AnimatedGuides
+          guides={guideProfiles}
+          sectionTitle={carouselSectionTitle}
+          autoplay
+        />
+      )}
 
       {/* Testimonials */}
       <section className="py-32 bg-white relative">
         <div className="container mx-auto px-6 text-center mb-16">
           <h2 className="font-accent italic text-3xl md:text-5xl text-black mb-4 font-light tracking-wide">Voice of the Crossing</h2>
         </div>
-        <StaggerTestimonials testimonials={testimonialsForComponent} />
+        <AnimatedTestimonials testimonials={testimonialsForComponent} autoplay />
       </section>
 
       {/* Investment, Next Steps, Final CTA */}

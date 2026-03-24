@@ -38,7 +38,7 @@ export default async function TestimonialsForm() {
               <input type="text" name="author_role" defaultValue={item.author_role} className="w-full bg-zinc-900 border border-zinc-700 text-white px-4 py-3 focus:outline-none focus:border-white" />
             </div>
             <div>
-              <label className="block text-xs uppercase tracking-widest text-zinc-400 mb-2">Avatar URL</label>
+              <label className="block text-xs uppercase tracking-widest text-zinc-400 mb-2">Photo URL</label>
               <input type="text" name="avatar_url" defaultValue={item.avatar_url} className="w-full bg-zinc-900 border border-zinc-700 text-white px-4 py-3 focus:outline-none focus:border-white" />
             </div>
           </fieldset>
